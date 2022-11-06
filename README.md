@@ -98,7 +98,6 @@ Enable Istio with the following command:
 
 ### Copy and Paste the following into the myMeshConfig.yaml
 
-	---
 	apiVersion: networking.istio.io/v1alpha3
 	kind: VirtualService
 	metadata:
@@ -107,19 +106,24 @@ Enable Istio with the following command:
 	  hosts:
 	  - reviews
 	  http:
-	  - route:
+	  - name: "BookInfo Custom Routing"
+	    route:
 	    - destination:
 		host: reviews
 		subset: v1
-	    	weight: 70
+	      weight: 70
 	    - destination:
 		host: reviews
 		subset: v2
-	    	weight: 20
+	      weight: 20
 	    - destination:
 		host: reviews
 		subset: v3
-	    	weight: 10
+	      weight: 10   
+      
+
+
+
 
 Save and close the editor.
 
