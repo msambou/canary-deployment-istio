@@ -90,3 +90,33 @@ Enable Istio with the following command:
 	export GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT
 	
 	echo $GATEWAY_URL
+
+## Create Routing Rules
+
+	nano myMeshConfig.yaml
+
+### Copy and Paste the following into the myMeshConfig.yaml
+
+	---
+	apiVersion: networking.istio.io/v1alpha3
+	kind: VirtualService
+	metadata:
+	  name: reviews
+	spec:
+	  hosts:
+	  - reviews
+	  http:
+	  - route:
+	    - destination:
+		host: reviews
+		subset: v1
+	    	weight: 70
+	    - destination:
+		host: reviews
+		subset: v2
+	    	weight: 20
+	    - destination:
+		host: reviews
+		subset: v3
+	    	weight: 10
+
