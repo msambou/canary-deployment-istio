@@ -62,19 +62,31 @@ Enable Istio with the following command:
 
     sudo microk8s kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
     
-## 
-
-When prompted, choose whether to enforce mutual TLS authentication among sidecars. If you have a mixed deployment with non-Istio and Istio enabled services or you’re unsure, choose No.
-
-Please run the following command to check deployment progress:
-
-    watch microk8s.kubectl get all --all-namespaces
-
-## Install Kubectl
-
-## Install Istio Service Mesh
-
-## Deploy BookInfo
-Follow the instructions in [this tutorial](https://istio.io/latest/docs/examples/bookinfo/) to deploy BookInfo
+## Verify whether Everything works fine
+	microk8s kubectl exec "$(microk8s kubectl get pod -l app=ratings -o jsonpath='{.items[0].metadata.name}')" -c ratings -- curl -sS productpage:9080/productpage | grep -o "<title>.*</title>"
+<title>Simple Bookstore App</title>
 
 
+## Open the application to outside traffic
+	
+	microk8s kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
+
+## Determining the ingress IP and ports
+
+	microk8s kubectl get svc istio-ingressgateway -n istio-system
+	
+
+## Set the ingress IP and ports
+
+	export INGRESS_PORT=$(microk8s kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
+	
+	export SECURE_INGRESS_PORT=$(microk8s kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="https")].nodePort}')
+
+	export INGRESS_HOST=$(microk8s kubectl get po -l istio=ingressgateway -n istio-system -o jsonpath='{.items[0].status.hostIP}')
+
+
+## Set Gateway URL
+
+	export GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT
+	
+	echo $GATEWAY_URL
