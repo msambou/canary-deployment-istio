@@ -15,8 +15,28 @@ Install the latest version of MicroK8s using the command
     sudo snap install microk8s --classic
 
 Enable Istio with the following command:
+    
+    sudo microk8s enable community
+    
+    sudo microk8s.enable istio
 
-    microk8s.enable istio
+## Deploy BookInfo
+
+    microk8s kubectl label namespace default istio-injection=enabled
+    
+    cd istio-1.15.3
+    
+    sudo microk8s kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
+    
+## Verify Whether the Pods are running
+
+    Now verify that the pods are running
+    
+## Open the application to outside traffic
+
+    sudo microk8s kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
+    
+## 
 
 When prompted, choose whether to enforce mutual TLS authentication among sidecars. If you have a mixed deployment with non-Istio and Istio enabled services or you’re unsure, choose No.
 
