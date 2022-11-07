@@ -83,15 +83,24 @@ Enable Istio with the following command:
 
 	export SECURE_INGRESS_PORT=$(microk8s kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="https")].nodePort}')
 
-	export INGRESS_HOST=$(microk8s kubectl get po -l istio=ingressgateway -n istio-system -o jsonpath='{.items[0].status.hostIP}')
 
 
 ## Set Gateway URL
-
+Because our application is running on a remote server, Azure, we have to use the public IP address of the server we provisioned.
+	
+	export INGRESS_HOST=<your-vm-IP>
 	export GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT
 	
 	echo $GATEWAY_URL
 
+### View Application
+echo $GATEWAY_URL should give you the IP address and Port your application is running on.
+In your browser, navigate to htt://$GATEWAY_URL/productpage. You should find your application running.
+
+## Apply default routing rules
+
+	sudo microk8s kubectl apply -f samples/bookinfo/networking/destination-rule-all.yaml
+	
 ## Create Routing Rules
 
 	nano myMeshConfig.yaml
@@ -124,7 +133,6 @@ Enable Istio with the following command:
 
 
 
-
 Save and close the editor.
 
 In the above configuration, we are sending 70% of the traffic to version 1, 20% to version 2 and 10% to version 3 of the review application.
@@ -132,4 +140,10 @@ In the above configuration, we are sending 70% of the traffic to version 1, 20% 
 ### Apply these routing rules
 
 	sudo microk8s kubectl apply -f myMeshConfig
+
+### View the updates in your browser
+
+	- V1 No ratings/stars
+	- V2 Rating with Black stars
+	- V3 Rating with Red stars
 	
