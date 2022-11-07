@@ -126,7 +126,11 @@ In your browser, navigate to htt://$GATEWAY_URL/productpage. You should find you
 ## Apply default routing rules
 
 	sudo microk8s kubectl apply -f samples/bookinfo/networking/destination-rule-all.yaml
-	
+
+After running the above code, go back to your browser and refresh the page several times.
+You should notice that the Book Reviews section changes certain times you reload the page.
+This is because there are three versions of the review microservice running.
+
 ## Create Custom Routing Rules
 In a scenario where the DevOps team have just made a new release and would only want to direct a small fraction of the traffic to a particular version of the application, say V3, one can create custom routing rules. For instance, one can configure Istio in such a way that only 10% of the traffic is directed to the latest version of the application.
 
