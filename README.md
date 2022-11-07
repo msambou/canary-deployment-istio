@@ -79,9 +79,11 @@ Enable Istio with the following command:
 ## Set the ingress IP and ports
 
 Get INGRESS_PORT
+
 	export INGRESS_PORT=$(microk8s kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
 
 Set the SECURE_INGRESS_PORT
+
 	export SECURE_INGRESS_PORT=$(microk8s kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="https")].nodePort}')
 
 
