@@ -67,8 +67,6 @@ Enable Istio with the following command:
     
 ## Deploy BookInfo
     
-    cd istio-1.15.3
-    
     sudo microk8s kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
     
 ## Verify Whether the Pods are running
