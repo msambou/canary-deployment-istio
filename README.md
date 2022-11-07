@@ -112,11 +112,11 @@ Because our application is running on a remote server, Azure, we have to use the
 	
 	echo $GATEWAY_URL
 
-## Open all inbound ports on Azure
-Now, we want to make sure that our application is available to the public, to do this we have to open certain ports on the VM we provisioned.
+## Open Inbound port (INGRESS_HOST)
+Now, we want to make sure that our application is available to the public. To do this, we have to open certain ports on the VM we provisioned.
 We will only open the INGRESS_PORT for security purposes.
 
-Navigate to the VM created. Under **Settings** , select **Networking**
+Navigate to the VM created. Under **Settings** , select **Networking**.
 Add a new inbound rule. Destination port should be your INGRESS_PORT. Finally, click on Add.
 
 ### View Application
