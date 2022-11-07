@@ -78,10 +78,6 @@ Enable Istio with the following command:
     sudo microk8s kubectl get services
  
     
-## Open the application to outside traffic
-
-    sudo microk8s kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
-    
 ## Verify whether Everything works fine
 	microk8s kubectl exec "$(microk8s kubectl get pod -l app=ratings -o jsonpath='{.items[0].metadata.name}')" -c ratings -- curl -sS productpage:9080/productpage | grep -o "<title>.*</title>"
 <title>Simple Bookstore App</title>
