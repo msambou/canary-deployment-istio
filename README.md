@@ -18,13 +18,17 @@ group of users once the team is confident the release won't cause issues.
 In this tutorial we will demonstrate canary deployment using [BookInfo Application](https://istio.io/latest/docs/examples/bookinfo/).
 The Bookinfo application is broken into four separate microservices:
 
-* productpage. The productpage microservice calls the details and reviews microservices to populate the page.
-* details. The details microservice contains book information.
-* reviews. The reviews microservice contains book reviews. It also calls the ratings microservice.
-* ratings. The ratings microservice contains book ranking information that accompanies a book review.
+* **productpage.** The productpage microservice calls the details and reviews microservices to populate the page.
+* **details.** The details microservice contains book information.
+* **reviews.** The reviews microservice contains book reviews. It also calls the ratings microservice.
+* **ratings.** The ratings microservice contains book ranking information that accompanies a book review.
 
 
+There are 3 versions of the reviews microservice:
 
+* **Version v1** doesn’t call the ratings service.
+* **Version v2** calls the ratings service, and displays each rating as 1 to 5 black stars.
+* **Version v3** calls the ratings service, and displays each rating as 1 to 5 red stars.
 
 ## Install Kuberbetes
 Install the latest version of MicroK8s using the command
