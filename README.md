@@ -30,7 +30,7 @@ There are 3 versions of the reviews microservice:
 * **Version v2** calls the ratings service, and displays each rating as 1 to 5 black stars.
 * **Version v3** calls the ratings service, and displays each rating as 1 to 5 red stars.
 
-[BookInfo Architecture](https://istio.io/latest/docs/examples/bookinfo/noistio.svg)
+![BookInfo Architecture](https://istio.io/latest/docs/examples/bookinfo/noistio.svg)
 
 ## Install Kuberbetes
 Install the latest version of MicroK8s using the command
