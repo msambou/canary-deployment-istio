@@ -127,8 +127,11 @@ In your browser, navigate to htt://$GATEWAY_URL/productpage. You should find you
 
 	sudo microk8s kubectl apply -f samples/bookinfo/networking/destination-rule-all.yaml
 	
-## Create Routing Rules
+## Create Custom Routing Rules
+In a scenario where the DevOps team have just made a new release and would only want to direct a small fraction of the traffic to a particular version of the application, say V3, one can create custom routing rules. For instance, one can configure Istio in such a way that only 10% of the traffic is directed to the latest version of the application.
 
+
+	# Create a yaml file to hold your custom routing rules
 	nano myMeshConfig.yaml
 
 ### Copy and Paste the following into the myMeshConfig.yaml
