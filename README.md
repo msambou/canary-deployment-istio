@@ -149,11 +149,11 @@ In a scenario where the DevOps team have just made a new release and would only 
         - destination:
             host: reviews
             subset: v1
-          weight: 80
+          weight: 70
         - destination:
             host: reviews
             subset: v2
-          weight: 10
+          weight: 20
         - destination:
             host: reviews
             subset: v3
