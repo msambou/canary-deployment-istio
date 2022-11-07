@@ -149,15 +149,15 @@ In a scenario where the DevOps team have just made a new release and would only 
 	    - destination:
 		host: reviews
 		subset: v1
-	      weight: 70
+	      weight: 80
 	    - destination:
 		host: reviews
 		subset: v2
-	      weight: 20
+	      weight: 10
 	    - destination:
 		host: reviews
 		subset: v3
-	      weight: 10   
+	      weight: 10
       
 
 
@@ -168,7 +168,7 @@ In the above configuration, we are sending 70% of the traffic to version 1, 20% 
 
 ### Apply these routing rules
 
-	sudo microk8s kubectl apply -f myMeshConfig
+	sudo microk8s kubectl apply -f myMeshConfig.yaml
 
 ### View the updates in your browser
 
