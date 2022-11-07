@@ -136,28 +136,28 @@ In a scenario where the DevOps team have just made a new release and would only 
 
 ### Copy and Paste the following into the myMeshConfig.yaml
 
-	apiVersion: networking.istio.io/v1alpha3
-	kind: VirtualService
-	metadata:
-	  name: reviews
-	spec:
-	  hosts:
-	  - reviews
-	  http:
-	  - name: "BookInfo Custom Routing"
-	    route:
-	    - destination:
-		host: reviews
-		subset: v1
-	      weight: 80
-	    - destination:
-		host: reviews
-		subset: v2
-	      weight: 10
-	    - destination:
-		host: reviews
-		subset: v3
-	      weight: 10
+    apiVersion: networking.istio.io/v1alpha3
+    kind: VirtualService
+    metadata:
+      name: reviews
+    spec:
+      hosts:
+      - reviews
+      http:
+      - name: "BookInfo Custom Routing"
+        route:
+        - destination:
+            host: reviews
+            subset: v1
+          weight: 80
+        - destination:
+            host: reviews
+            subset: v2
+          weight: 10
+        - destination:
+            host: reviews
+            subset: v3
+          weight: 10
       
 
 
