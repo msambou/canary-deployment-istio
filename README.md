@@ -9,6 +9,22 @@ At the end of this tutorial, you will learn how to;
 The tutorial assumes that you have provisioned an Ubuntu 20.04 server on Azure.
 The server should have an 8Gb RAM.
 
+## Canary Deployment
+With canary deployment, DevOps Engineers roll out a new version of an application only to a selected group of users.
+The selected group of users may test and provide feedback to the development team. The update is later rolled out to the remaining 
+group of users once the team is confident the release won't cause issues.
+
+## BookInfo Application
+In this tutorial we will demonstrate canary deployment using [BookInfo Application](https://istio.io/latest/docs/examples/bookinfo/).
+The Bookinfo application is broken into four separate microservices:
+
+ productpage. The productpage microservice calls the details and reviews microservices to populate the page.
+ details. The details microservice contains book information.
+ reviews. The reviews microservice contains book reviews. It also calls the ratings microservice.
+ ratings. The ratings microservice contains book ranking information that accompanies a book review.
+
+
+
 
 ## Install Kuberbetes
 Install the latest version of MicroK8s using the command
